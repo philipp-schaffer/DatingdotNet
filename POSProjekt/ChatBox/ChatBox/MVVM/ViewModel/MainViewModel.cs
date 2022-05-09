@@ -11,21 +11,40 @@ using System.Windows;
 
 namespace ChatBox.MVVM.ViewModel
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
-        public LoginViewModel LoginVM { get; set; }
+        private LoginViewModel _loginVM;
+        public LoginViewModel LoginVM {
+            get => _loginVM;
+            set
+            {
+                _loginVM = value;
+                Username = _loginVM.Username;
+                OnPropertyChanged();
+            }
+        }
+        
         
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<string> Messages { get; set; }
         public RelayCommand ConnectToServerCommand { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
         private Server _server;
-        public string Username { get; set; }
+
+        string _username;
+        public string Username {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            }
+        }
         public string Message { get; set; }
 
         public MainViewModel()
         {
-            LoginVM = new LoginViewModel();
+            _loginVM = new LoginViewModel();
             
             Users = new ObservableCollection<UserModel>();
             Messages = new ObservableCollection<string>();

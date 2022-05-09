@@ -24,8 +24,9 @@ namespace ChatBox.MVVM.View
         public MainUC(MainViewModel mvm)
         {
             InitializeComponent();
-            mvm = new MainViewModel();
+            
             DataContext = mvm;
+            
         }
     }
 }
