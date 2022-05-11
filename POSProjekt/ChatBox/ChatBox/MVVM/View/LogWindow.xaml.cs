@@ -52,7 +52,7 @@ namespace ChatBox.MVVM.View
 
         private void testBut_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(mv.Username);
+            Console.WriteLine(mv.LoginVM.Username);
         }
     }
 }
