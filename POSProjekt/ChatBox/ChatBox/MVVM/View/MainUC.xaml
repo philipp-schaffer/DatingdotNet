@@ -14,11 +14,11 @@
         <DockPanel>
             <TextBox Height="25"
                      DockPanel.Dock="Top"
-                    Text="{Binding Username,   UpdateSourceTrigger=PropertyChanged}" 
+                    Text="{Binding CurrentUser.Username,   UpdateSourceTrigger=PropertyChanged}" 
                       IsReadOnly="True"
                      />
 
-            <ListView ItemsSource="{Binding Users}">
+            <ListView ItemsSource="{Binding ChatUsers}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"></TextBlock>

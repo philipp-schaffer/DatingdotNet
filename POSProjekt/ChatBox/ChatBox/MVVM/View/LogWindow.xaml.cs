@@ -35,7 +35,7 @@ namespace ChatBox.MVVM.View
             mv = new MainViewModel();
             DataContext = mv;
             AllocConsole();
-            Console.WriteLine("test");
+           
 
         }
 

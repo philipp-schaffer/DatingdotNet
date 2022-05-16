@@ -58,7 +58,7 @@ namespace ChatBox.Model
 
                 entity.Property(e => e.ChatId).HasColumnName("ChatID");
 
-                entity.Property(e => e.MessageContent)
+                entity.Property(e => e.Message1)
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("Message");

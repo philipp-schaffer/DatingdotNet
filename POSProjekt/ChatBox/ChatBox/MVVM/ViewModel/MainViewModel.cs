@@ -14,6 +14,9 @@ namespace ChatBox.MVVM.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+
+        
+        public ObservableCollection<User> ChatUsers { get; set; }
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<string> Messages { get; set; }
         public RelayCommand ConnectToServerCommand { get; set; }
@@ -51,7 +54,7 @@ namespace ChatBox.MVVM.ViewModel
         public MainViewModel()
         {
             _loginVM = new LoginViewModel();
-
+            ChatUsers = new ObservableCollection<User>();
             Users = new ObservableCollection<UserModel>();
             Messages = new ObservableCollection<string>();
             _server = new Server();
@@ -60,19 +63,20 @@ namespace ChatBox.MVVM.ViewModel
             _server.userDisconnectEvent += UserDisconnect;
             ConnectToServerCommand = new RelayCommand(o => ConnectAndLogin(), o => CanLogin());
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
+           
 
         }
 
         public void ConnectAndLogin()
         {
+            List<string> messageList = new List<string>();
+
             using (var db = new DatingDB())
             {
                 if (db.Users.Any(x => x.Username.Equals(LoginVM.Username)))
                 {
                     var user = db.Users.FirstOrDefault(x => x.Username.Equals(LoginVM.Username));
-                    Console.WriteLine(user.Password);
-                    Console.WriteLine("passoord model" + LoginVM.Password);
-                    Console.WriteLine("User mode" + LoginVM.Username);
+                   
                     if (user.Password.Equals(LoginVM.Password))
                     {
                         CurrentUser = new CurrentUserViewModel()
@@ -85,7 +89,29 @@ namespace ChatBox.MVVM.ViewModel
                     }
 
                 }
-            }
+                var messages = db.Messages.ToList();
+                var users = db.Users.ToList();
+                var chats = db.Chats.ToList();
+              
+           
+
+                var matchedChat = from c in db.Chats
+                                  where c.UserId1.Equals(CurrentUser.UserId) || c.UserId2.Equals(CurrentUser.UserId)
+                                  select c;
+             
+                var persons = new List<User>();
+                foreach(var chat in matchedChat)
+                {
+                    if (chat.UserId1.Equals(CurrentUser.UserId))
+                    {
+                        persons.Add(chat.UserId2Navigation);
+                    }
+                    
+                }
+
+                persons.ForEach(x => ChatUsers.Add(x));
+
+         }
         }
 
         public bool CanLogin()
