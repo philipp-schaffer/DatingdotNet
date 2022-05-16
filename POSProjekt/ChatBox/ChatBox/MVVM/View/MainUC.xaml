@@ -17,7 +17,7 @@
                     Text="{Binding Username,   UpdateSourceTrigger=PropertyChanged}" 
                       IsReadOnly="True"
                      />
-         
+
             <ListView ItemsSource="{Binding Users}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -21,7 +21,6 @@ namespace ChatBox.MVVM.View
     /// </summary>
     public partial class LogWindow : Window
     {
-
         [DllImport("Kernel32")]
         public static extern void AllocConsole();
 
@@ -37,7 +36,7 @@ namespace ChatBox.MVVM.View
             DataContext = mv;
             AllocConsole();
             Console.WriteLine("test");
-            
+
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

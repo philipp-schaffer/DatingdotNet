@@ -23,9 +23,9 @@ namespace ChatBox.MVVM.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        MainViewModel mvm;
       //  MainViewModel mvm;
-        public MainWindow(MainViewModel mvm)
+        public MainWindow()
         {
             InitializeComponent();
             mvm = new MainViewModel();

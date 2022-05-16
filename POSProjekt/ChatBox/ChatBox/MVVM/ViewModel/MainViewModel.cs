@@ -20,36 +20,38 @@ namespace ChatBox.MVVM.ViewModel
         public RelayCommand SendMessageCommand { get; set; }
         private Server _server;
 
-      
+
 
 
         private LoginViewModel _loginVM;
-        public LoginViewModel LoginVM {
+        public LoginViewModel LoginVM
+        {
             get => _loginVM;
             set
             {
                 _loginVM = value;
                 OnPropertyChanged();
-             
+
             }
         }
         private CurrentUserViewModel _currentUserVM;
-        public CurrentUserViewModel CurrentUser { 
+        public CurrentUserViewModel CurrentUser
+        {
             get => _currentUserVM;
             set
             {
                 _currentUserVM = value;
                 OnPropertyChanged();
             }
-        
+
         }
-       
+
         public string Message { get; set; }
 
         public MainViewModel()
         {
             _loginVM = new LoginViewModel();
-            
+
             Users = new ObservableCollection<UserModel>();
             Messages = new ObservableCollection<string>();
             _server = new Server();
@@ -63,7 +65,7 @@ namespace ChatBox.MVVM.ViewModel
 
         public void ConnectAndLogin()
         {
-            using(var db = new DatingDbContext())
+            using (var db = new DatingDB())
             {
                 if (db.Users.Any(x => x.Username.Equals(LoginVM.Username)))
                 {
@@ -81,14 +83,14 @@ namespace ChatBox.MVVM.ViewModel
                         };
                         _server.ConnectToServer(CurrentUser.Username);
                     }
-                   
+
                 }
             }
         }
 
         public bool CanLogin()
         {
-            using (var db = new DatingDbContext())
+            using (var db = new DatingDB())
             {
                 if (db.Users.Any(x => x.Username.Equals(LoginVM.Username)))
                 {
@@ -103,7 +105,7 @@ namespace ChatBox.MVVM.ViewModel
         {
             var msg = _server.PacketReader.ReadMessage();
             Application.Current.Dispatcher.Invoke(() => Messages.Add(msg));
-          
+
         }
 
         private void UserDisconnect()
@@ -120,7 +122,7 @@ namespace ChatBox.MVVM.ViewModel
                 Username = _server.PacketReader.ReadMessage(),
                 UID = _server.PacketReader.ReadMessage()
             };
-            if (!Users.Any(x=> x.UID.Equals(user.UID)))
+            if (!Users.Any(x => x.UID.Equals(user.UID)))
             {
                 Application.Current.Dispatcher.Invoke(() => Users.Add(user));
             }

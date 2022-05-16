@@ -1,0 +1,25 @@
+create table Users (
+UserID int auto_increment primary key,
+Username varchar(50) not null,
+Password varchar(50) not null
+);
+
+create table Chats(
+	
+    UserID1 int not null,
+    UserID2 int not null,
+    Primary key (UserID1, UserID2),
+    foreign key (UserID1) references Users(UserID),
+     foreign key (UserID2) references Users(UserID)
+    
+);
+
+create table Messages(
+MessageID int auto_increment primary key,
+Message varchar(200),
+
+ChatID1 int not null,
+ChatID2 int not null,
+
+foreign key (ChatID1 ,ChatID2) references Chats(UserID1,UserID2)
+);

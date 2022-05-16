@@ -8,10 +8,12 @@ namespace ChatBox.MVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-        string _username ;
-        public string Username {
+        string _username;
+        public string Username
+        {
             get => _username;
-            set { 
+            set
+            {
                 _username = value;
                 OnPropertyChanged();
             }
@@ -32,7 +34,7 @@ namespace ChatBox.MVVM.ViewModel
 
         public LoginViewModel()
         {
-            
+
         }
     }
 }
