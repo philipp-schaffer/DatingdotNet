@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace ChatBox.MVVM.ViewModel
 {
@@ -24,7 +25,16 @@ namespace ChatBox.MVVM.ViewModel
         private Server _server;
 
 
-
+        private User _selectedUser;
+        public User SelectedUser
+        {
+            get => _selectedUser;
+            set { 
+                _selectedUser = value;
+                OnPropertyChanged();
+                Console.WriteLine(_selectedUser.Username);
+            }
+        }
 
         private LoginViewModel _loginVM;
         public LoginViewModel LoginVM
@@ -62,9 +72,22 @@ namespace ChatBox.MVVM.ViewModel
             _server.msgRecivedEvent += MessageRecived;
             _server.userDisconnectEvent += UserDisconnect;
             ConnectToServerCommand = new RelayCommand(o => ConnectAndLogin(), o => CanLogin());
-            SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
+            SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(MessageToXML().ToString()), o => !string.IsNullOrEmpty(Message));
            
 
+        }
+
+        public XElement MessageToXML()
+        {
+            XElement xml = new XElement("Message", 
+                new XAttribute("Sender",CurrentUser.Username),
+                new XAttribute("Receiver",SelectedUser.Username),
+                new XAttribute("Time", DateTime.Now),
+                Message
+                
+                );
+            Console.WriteLine(xml);
+            return xml;
         }
 
         public void ConnectAndLogin()
@@ -100,17 +123,18 @@ namespace ChatBox.MVVM.ViewModel
                                   select c;
              
                 var persons = new List<User>();
-                foreach(var chat in matchedChat)
+                if (matchedChat != null )
                 {
-                    if (chat.UserId1.Equals(CurrentUser.UserId))
+                    foreach (var chat in matchedChat)
                     {
-                        persons.Add(chat.UserId2Navigation);
+                        if (chat.UserId1.Equals(CurrentUser.UserId))
+                        {
+                            persons.Add(chat.UserId2Navigation);
+                        }
+
                     }
-                    
+                    persons.ForEach(x => ChatUsers.Add(x));
                 }
-
-                persons.ForEach(x => ChatUsers.Add(x));
-
          }
         }
 

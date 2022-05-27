@@ -42,7 +42,10 @@ namespace ServerChat
                         case 5:
                             var msg = _packetReader.ReadMessage();
                             Console.WriteLine($"{DateTime.Now}: Message Recived! {msg}");
-                            Program.BroadcastMessage($"{DateTime.Now}: {Username} {msg} ");
+                            // old version of the orginal code
+                            //  Program.BroadcastMessage($"{DateTime.Now}: {Username} {msg} ");
+                            // there is no dateTime.Now or username cause this informations are already provided in xml msg 
+                            Program.BroadcastMessage($" {msg} ");
                             break;
                         default:
                             break;

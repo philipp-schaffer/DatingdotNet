@@ -18,7 +18,7 @@
                       IsReadOnly="True"
                      />
 
-            <ListView ItemsSource="{Binding ChatUsers}">
+            <ListView ItemsSource="{Binding ChatUsers }" SelectedItem="{Binding Path=SelectedUser, UpdateSourceTrigger=PropertyChanged}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
