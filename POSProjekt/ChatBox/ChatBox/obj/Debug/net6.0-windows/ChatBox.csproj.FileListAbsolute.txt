@@ -169,3 +169,5 @@ C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\bin\Debug\net6.0-windows\runti
 C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\bin\Debug\net6.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\obj\Debug\net6.0-windows\ChatBox.csproj.CopyComplete
+C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\bin\Debug\net6.0-windows\Castle.Core.dll
+C:\Users\onowa\Desktop\POSProjekt\ChatBox\ChatBox\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Proxies.dll

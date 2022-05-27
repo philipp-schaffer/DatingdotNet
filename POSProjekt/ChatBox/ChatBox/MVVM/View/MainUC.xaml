@@ -29,7 +29,7 @@
 
         <StackPanel Grid.Column="1">
             <ListView Height="380"
-                      ItemsSource="{Binding Messages}"/>
+                      ItemsSource="{Binding ChatMessages}"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="55"
