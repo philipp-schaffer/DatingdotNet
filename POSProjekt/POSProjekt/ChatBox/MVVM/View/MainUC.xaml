@@ -9,11 +9,11 @@
 
     
    
-    <Grid x:Name="maingrid">
+    <Grid >
         <Grid.ColumnDefinitions>
             
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
+            
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             
@@ -34,8 +34,10 @@
                     </ListViewItem>
                     <ListViewItem Height="30">
                         <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Margin="30 0 0 0" Text="Inbox" VerticalAlignment="Center"/>
+                            <Button Background="Transparent" BorderBrush="Transparent" Click="Button_Click_1">
+                                <TextBlock Margin="30 0 0 0" Text="Inbox" VerticalAlignment="Center" Foreground="White" />
+                            </Button>
+                            
                         </StackPanel>
                     </ListViewItem>
 
@@ -44,10 +46,10 @@
                 </ListView>
             </StackPanel>
 
+            <Grid x:Name="maingrid">
 
 
-
-            <DockPanel x:Name="sideDockPanel" Width="160" HorizontalAlignment="Right">
+                <DockPanel x:Name="sideDockPanel" Width="200" Margin="40,0,0,0" HorizontalAlignment="Left">
             <TextBox Height="25" 
                      DockPanel.Dock="Top"
                     Text="{Binding CurrentUser.Username,   UpdateSourceTrigger=PropertyChanged}" 
@@ -63,8 +65,8 @@
             </ListView>
         </DockPanel>
                     
-            </Grid>
-        <StackPanel Grid.Column="1">
+            
+        <StackPanel HorizontalAlignment="Right">
             <ListView Height="380"
                       ItemsSource="{Binding ChatMessages}"/>
 
@@ -80,7 +82,8 @@
 
 
         </StackPanel>
-        
+            </Grid>
+        </Grid>
     </Grid>
 
 </UserControl>

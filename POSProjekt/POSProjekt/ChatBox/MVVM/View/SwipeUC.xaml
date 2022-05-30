@@ -5,8 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChatBox.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        
+        <Grid Background="White" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" >
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Image Source="https://raw.githubusercontent.com/oliwierjnowak/DatingdotNet/main/Images/kendall.jpg" Width="200" Height="300"/>
+        </Grid>
+
+        </Grid>
     </Grid>
 </UserControl>

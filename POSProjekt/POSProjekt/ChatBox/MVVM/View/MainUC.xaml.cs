@@ -47,7 +47,7 @@ namespace ChatBox.MVVM.View
             if (hidden)
             {
                 sideDockPanel.Width = 0;
-                sidePanel.Width += 3;
+                sidePanel.Width += 5;
                 if (sidePanel.Width >= panelWidth)
                 {
                     timer.Stop();
@@ -57,7 +57,7 @@ namespace ChatBox.MVVM.View
             else
             {
                 sideDockPanel.Width = 160;
-                sidePanel.Width -= 3;
+                sidePanel.Width -= 5;
                 if (sidePanel.Width <= 40)
                 {
                     timer.Stop();
@@ -72,9 +72,16 @@ namespace ChatBox.MVVM.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            sidePanel.Width = 40;
             maingrid.Children.Clear();
             maingrid.Children.Add(new SwipeUC(_mvm));
-            Console.WriteLine(_mvm.CurrentUser.Username);
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            maingrid.Children.Clear();
+            maingrid.Children.Add(new MainUC(_mvm));
         }
     }
 }
