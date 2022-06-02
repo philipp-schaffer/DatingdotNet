@@ -1,6 +1,7 @@
 ﻿using ChatBox.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ChatBox.MVVM.ViewModel
             ChatUserId1Nav = new List<Chat>();
             ChatUserId2Nav = new List<Chat>();
             Images=new List<Image>();
-
+            Debug.WriteLine("git test");
         }
     }
 }
