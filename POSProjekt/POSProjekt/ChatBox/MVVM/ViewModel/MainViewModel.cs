@@ -16,8 +16,8 @@ namespace ChatBox.MVVM.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        public SwipeViewModel svm { get;set; }
 
-        
         public ObservableCollection<User> ChatUsers { get; set; }
         public ObservableCollection<UserModel> Users { get; set; }  
         private ObservableCollection<string> _messages;
@@ -30,6 +30,7 @@ namespace ChatBox.MVVM.ViewModel
             } }
         public RelayCommand ConnectToServerCommand { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
+        public RelayCommand HelloCommand { get; set; }
         private Server _server;
        
         private User _selectedUser;
@@ -87,11 +88,14 @@ namespace ChatBox.MVVM.ViewModel
             _server = new Server();
             _chatMessages = new ObservableCollection<string>();
             Messages = new ObservableCollection<string>();
+
+          
             _server.connectedEvent += UserConnected;
             _server.msgRecivedEvent += MessageRecived;
             _server.userDisconnectEvent += UserDisconnect;
             ConnectToServerCommand = new RelayCommand(o => ConnectAndLogin(), o => CanLogin());
             SendMessageCommand = new RelayCommand(o => Send(), o => !string.IsNullOrEmpty(Message));
+            HelloCommand = new RelayCommand(o => Console.WriteLine("Hello world"), o => true);
            
 
         }
@@ -214,7 +218,9 @@ namespace ChatBox.MVVM.ViewModel
                     }
                     persons.ForEach(x => ChatUsers.Add(x));
                 }
+
          }
+            svm = new SwipeViewModel(CurrentUser);
         }
 
         public bool CanLogin()

@@ -29,9 +29,20 @@
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="0">
-            <Image Source="https://raw.githubusercontent.com/oliwierjnowak/DatingdotNet/main/Images/kendall.jpg" Width="200" Height="300"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content=" Left " FontSize="50" />
+                <Button Grid.Column="2" Content=" Right" FontSize="50" Command="{Binding svm.RightSwipe , UpdateSourceTrigger=PropertyChanged}" />
+                <Image Source="{Binding svm.SwipeURL , UpdateSourceTrigger=PropertyChanged}" Width="200" Height="300" Grid.Column="1"/>
         </Grid>
 
+            <Grid Grid.Row="1" Grid.Column="0">
+                <TextBox Text="{Binding svm.SwipeCurrentUser.Username,   UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
+            </Grid>
+             
         </Grid>
     </Grid>
 </UserControl>
